@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Surya Veera | VR Portfolio</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #050505;
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    /* Background */
+    #canvas-container {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background: radial-gradient(circle at center, #1a1a2e 0%, #000000 100%);
+    }
+
+    /* Nav */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 16px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.95), transparent);
+      z-index: 10;
+    }
+    .logo {
+      font-weight: bold;
+      font-size: 1.4rem;
+      color: #00ffff;
+      text-shadow: 0 0 8px #00ffff;
+    }
+    .nav-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    nav a {
+      color: #00ffff;
+      text-decoration: none;
+      font-weight: bold;
+      border: 1px solid #00ffff;
+      padding: 6px 14px;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      transition: 0.25s;
+      text-shadow: 0 0 4px #00ffff;
+    }
+    nav a:hover {
+      background: #00ffff;
+      color: #000;
+      box-shadow: 0 0 16px #00ffff;
+      transform: translateY(-2px);
+    }
+
+    /* Hero / About */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+    }
+    .hero-title {
+      font-size: 3.2rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      background: linear-gradient(45deg, #00ffff, #ff00ff, #00ffff);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientMove 3s ease infinite;
+      margin-bottom: 16px;
+    }
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .hero-subtitle {
+      font-size: 1.3rem;
+      color: #aaddff;
+      margin-bottom: 24px;
+      text-shadow: 0 0 10px rgba(0,255,255,0.4);
+    }
+
+    .hero-text {
+      max-width: 650px;
+      font-size: 1rem;
+      color: #dddddd;
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .btn-primary, .btn-secondary {
+      cursor: pointer;
+      border-radius: 4px;
+      padding: 10px 22px;
+      font-weight: bold;
+      border: 2px solid #00ffff;
+      background: transparent;
+      color: #00ffff;
+      text-decoration: none;
+      transition: 0.25s;
+      text-shadow: 0 0 4px #00ffff;
+      font-size: 0.95rem;
+    }
+    .btn-primary {
+      background: #00ffff;
+      color: #000;
+      box-shadow: 0 0 18px rgba(0,255,255,0.7);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 26px rgba(0,255,255,0.9);
+    }
+    .btn-secondary:hover {
+      background: #00ffff;
+      color: #000;
+      box-shadow: 0 0 18px rgba(0,255,255,0.7);
+    }
+
+    .scroll-hint {
+      margin-top: 40px;
+      font-size: 0.9rem;
+      color: #888;
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 12px 16px; flex-direction: column; gap: 8px; align-items: flex-start; }
+      .hero-title { font-size: 2.4rem; }
+      .hero-subtitle { font-size: 1.1rem; }
+      .hero-text { font-size: 0.95rem; }
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+  <div id="canvas-container"></div>
+
+  <!-- NAVBAR (same on all pages) -->
+  <nav>
+    <div class="logo">SV</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="YOUR_RESUME.pdf" target="_blank">Resume</a>
+      <a href="https://www.linkedin.com" target="_blank">LinkedIn</a>
+      <a href="https://github.com/Surya-veera02" target="_blank">GitHub</a>
+    </div>
+  </nav>
+
+  <!-- HERO / ABOUT -->
+  <section class="hero">
+    <h1 class="hero-title">Surya Veera</h1>
+    <p class="hero-subtitle">Virtual Reality Developer & 3D Interaction Enthusiast</p>
+    <p class="hero-text">
+      Building immersive AR - VR experiences using Unity and C#, with a focus on training simulations,
+      accessibility and playful interaction. Passionate about turning complex ideas into intuitive
+      3D worlds that people can learn from, explore and enjoy.
+    </p>
+    <div class="hero-buttons">
+      <a href="projects.html" class="btn-primary">View Projects</a>
+      <a href="YOUR_RESUME.pdf" target="_blank" class="btn-secondary">Download Resume</a>
+    </div>
+    <!-- <div class="scroll-hint">Use the navigation above to explore more.</div> -->
+  </section>
+
+  <script>
+    // Simple galaxy-like starfield background
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.FogExp2(0x000000, 0.001);
+
+    const camera = new THREE.PerspectiveCamera(
+      75,
+      window.innerWidth / window.innerHeight,
+      0.1,
+      2000
+    );
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
+    document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+    const starsGeometry = new THREE.BufferGeometry();
+    const starsCount = 6000;
+    const positions = new Float32Array(starsCount * 3);
+    for (let i = 0; i < starsCount * 3; i++) {
+      positions[i] = (Math.random() - 0.5) * 2200;
+    }
+    starsGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    const starsMaterial = new THREE.PointsMaterial({
+      size: 2,
+      color: 0xffffff,
+      transparent: true,
+      opacity: 0.9
+    });
+    const stars = new THREE.Points(starsGeometry, starsMaterial);
+    scene.add(stars);
+
+    camera.position.z = 500;
+
+    let mouseX = 0, mouseY = 0;
+    const halfX = window.innerWidth / 2;
+    const halfY = window.innerHeight / 2;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX - halfX;
+      mouseY = e.clientY - halfY;
+    });
+
+    const clock = new THREE.Clock();
+    function animate() {
+      requestAnimationFrame(animate);
+      const t = clock.getElapsedTime();
+
+      stars.rotation.y = t * 0.03;
+      stars.rotation.x = t * 0.01;
+
+      const targetX = mouseX * 0.0008;
+      const targetY = mouseY * 0.0008;
+      stars.rotation.y += 0.03 * (targetX - stars.rotation.y);
+      stars.rotation.x += 0.03 * (targetY - stars.rotation.x);
+
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+  </script>
+</body>
+</html>
